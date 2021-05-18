@@ -80,11 +80,11 @@ def main():
             ymin = int(max(1, ymin * CAMERA_HEIGHT))
             ymax = int(min(CAMERA_HEIGHT, ymax * CAMERA_HEIGHT))
             
-            if interpreter:
+            if labels:
               count +=1
 
             cv2.line(frame, (xmin, ymin), (xmax, ymax), (255, 0, 255), 2)
-            cv2.putText(frame, "Kemasan Terhitung : {}", format(len(labels)), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 1, cv2.LINE_AA)
+            cv2.putText(frame, "Kemasan Terhitung : %d" % (count), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 1, cv2.LINE_AA)
 
             cv2.rectangle(frame,(xmin, ymin),(xmax, ymax),(0,255,0),3)
             cv2.putText(frame,labels[int(result['class_id'])],(xmin, min(ymax, CAMERA_HEIGHT-20)), cv2.FONT_HERSHEY_SIMPLEX, 0.5,(255,255,255),2,cv2.LINE_AA) 
@@ -97,5 +97,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-    
